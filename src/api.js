@@ -5,7 +5,16 @@ const isLocalhost = currentHost === 'localhost' || currentHost === '127.0.0.1';
 const defaultApiUrl = isLocalhost
     ? 'http://localhost:5000/api'
     : '/api';
-const API_URL = (import.meta.env.VITE_API_URL || defaultApiUrl).trim();
+const rawApiUrl = (import.meta.env.VITE_API_URL || defaultApiUrl).trim();
+
+function normalizeApiUrl(url) {
+    const clean = (url || '').replace(/\/+$/, '');
+    if (!clean) return '/api';
+    if (clean === '/api' || clean.endsWith('/api')) return clean;
+    return `${clean}/api`;
+}
+
+const API_URL = normalizeApiUrl(rawApiUrl);
 
 const API = axios.create({
     baseURL: API_URL,
