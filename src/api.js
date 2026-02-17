@@ -2,9 +2,10 @@ import axios from 'axios';
 
 const currentHost = window.location.hostname;
 const isLocalhost = currentHost === 'localhost' || currentHost === '127.0.0.1';
+const productionFallbackApiUrl = 'https://student-attendance-backend-groy.onrender.com/api';
 const defaultApiUrl = isLocalhost
     ? 'http://localhost:5000/api'
-    : '/api';
+    : productionFallbackApiUrl;
 const rawApiUrl = (import.meta.env.VITE_API_URL || defaultApiUrl).trim();
 
 function normalizeApiUrl(url) {
