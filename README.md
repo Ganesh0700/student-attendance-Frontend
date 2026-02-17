@@ -15,3 +15,18 @@ The React Compiler is not enabled on this template because of its impact on dev 
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 # student-attendance-Frontend
+
+## Deploy on Render
+
+This repo includes frontend config in root `render.yaml`.
+
+### Required environment variable
+
+- `VITE_API_URL` = `https://<your-backend-service>.onrender.com/api`
+
+### Manual Render setup (if not using blueprint)
+
+- Service type: `Static Site`
+- Root directory: `client`
+- Build command: `npm ci && npm run build`
+- Publish directory: `dist`

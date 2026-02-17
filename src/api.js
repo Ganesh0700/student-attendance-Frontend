@@ -4,7 +4,7 @@ const currentHost = window.location.hostname;
 const isLocalhost = currentHost === 'localhost' || currentHost === '127.0.0.1';
 const defaultApiUrl = isLocalhost
     ? 'http://localhost:5000/api'
-    : `http://${currentHost}:5000/api`;
+    : '/api';
 const API_URL = (import.meta.env.VITE_API_URL || defaultApiUrl).trim();
 
 const API = axios.create({
