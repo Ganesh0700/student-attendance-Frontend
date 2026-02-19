@@ -2,7 +2,10 @@ import axios from 'axios';
 
 const currentHost = window.location.hostname;
 const isLocalhost = currentHost === 'localhost' || currentHost === '127.0.0.1';
-const productionFallbackApiUrl = 'https://student-attendance-backend-groy.onrender.com/api';
+const isVercelHost = currentHost.endsWith('.vercel.app');
+const productionFallbackApiUrl = isVercelHost
+    ? '/api'
+    : 'https://student-attendance-backend-groy.onrender.com/api';
 const defaultApiUrl = isLocalhost
     ? 'http://localhost:5000/api'
     : productionFallbackApiUrl;
@@ -11,7 +14,12 @@ const rawApiUrl = (import.meta.env.VITE_API_URL || defaultApiUrl).trim();
 function normalizeApiUrl(url) {
     const clean = (url || '').replace(/\/+$/, '');
     if (!clean) return '/api';
-    if (clean === '/api' || clean.endsWith('/api')) return clean;
+    if (clean === '/api') return clean;
+    if (clean.startsWith('/api/')) return '/api';
+
+    const apiPrefixMatch = clean.match(/^(.*\/api)(?:\/.*)?$/i);
+    if (apiPrefixMatch) return apiPrefixMatch[1];
+
     return `${clean}/api`;
 }
 
