@@ -19,7 +19,7 @@ const API_URL = normalizeApiUrl(rawApiUrl);
 
 const API = axios.create({
     baseURL: API_URL,
-    timeout: 30000, // Increased to 30s for Render cold starts
+    timeout: 120000, // Increased to 120s (2 mins) because AI model loading on Render Free Tier is slow
 });
 
 API.interceptors.response.use(

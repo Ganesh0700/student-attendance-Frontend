@@ -53,10 +53,17 @@ const Register = () => {
             setTimeout(() => navigate("/login"), 2000);
 
         } catch (error) {
-            const apiMessage =
-                error?.response?.data?.error ||
-                error?.response?.data?.message ||
-                "Registration failed. Please retry with better lighting and a front face.";
+            console.error("Registration Error:", error);
+            let apiMessage = "Registration failed. Please retry with better lighting and a front face.";
+
+            if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
+                apiMessage = "Server timed out. The AI model is waking up, please try again.";
+            } else if (error?.response?.data?.error) {
+                apiMessage = error.response.data.error;
+            } else if (error?.response?.data?.message) {
+                apiMessage = error.response.data.message;
+            }
+
             setMessage({ type: "error", text: apiMessage });
         }
         setLoading(false);
