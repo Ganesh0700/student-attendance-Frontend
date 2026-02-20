@@ -47,6 +47,13 @@ const Home = () => {
           </div>
           <div className="flex items-center gap-2 sm:gap-3">
             <Link
+              to="/scanner"
+              className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-3 sm:px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-slate-800 hover:shadow-md"
+            >
+              <Camera size={16} />
+              <span className="hidden sm:inline">Scanner</span>
+            </Link>
+            <Link
               to="/login"
               className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-3 sm:px-4 py-2 text-sm font-semibold text-slate-700 transition-all hover:bg-slate-50 hover:shadow-md"
             >
@@ -108,8 +115,15 @@ const Home = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              to="/login"
+              to="/scanner"
               className="rounded-xl bg-slate-900 px-8 py-4 text-base font-semibold text-white transition-all hover:bg-slate-800 hover:shadow-xl flex items-center justify-center gap-3"
+            >
+              <Camera size={20} />
+              Start Attendance Scanner
+            </Link>
+            <Link
+              to="/login"
+              className="rounded-xl border-2 border-slate-900 bg-white px-8 py-4 text-base font-semibold text-slate-900 transition-all hover:bg-slate-50 hover:shadow-xl flex items-center justify-center gap-3"
             >
               <LogIn size={20} />
               Login Portal
@@ -202,14 +216,14 @@ const Home = () => {
               
               <div className="space-y-3">
                 <Link
-                  to="/login"
+                  to="/scanner"
                   className="block rounded-xl border border-slate-200 p-4 transition-all hover:border-blue-300 hover:bg-blue-50 group"
                 >
                   <div className="flex items-center gap-3">
-                    <LogIn className="text-blue-600 group-hover:scale-110 transition-transform" size={20} />
+                    <Camera className="text-blue-600 group-hover:scale-110 transition-transform" size={20} />
                     <div>
-                      <p className="font-semibold text-slate-900">Admin & Student Login</p>
-                      <p className="text-sm text-slate-500">Access dashboards and reports</p>
+                      <p className="font-semibold text-slate-900">Attendance Scanner</p>
+                      <p className="text-sm text-slate-500">Mark attendance via camera</p>
                     </div>
                   </div>
                 </Link>
@@ -228,14 +242,14 @@ const Home = () => {
                 </Link>
                 
                 <Link
-                  to="/dashboard"
+                  to="/login"
                   className="block rounded-xl border border-slate-200 p-4 transition-all hover:border-blue-300 hover:bg-blue-50 group"
                 >
                   <div className="flex items-center gap-3">
-                    <Camera className="text-blue-600 group-hover:scale-110 transition-transform" size={20} />
+                    <LogIn className="text-blue-600 group-hover:scale-110 transition-transform" size={20} />
                     <div>
-                      <p className="font-semibold text-slate-900">Attendance Scanner</p>
-                      <p className="text-sm text-slate-500">Mark attendance via camera</p>
+                      <p className="font-semibold text-slate-900">Admin & Student Login</p>
+                      <p className="text-sm text-slate-500">Access dashboards and reports</p>
                     </div>
                   </div>
                 </Link>

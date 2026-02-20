@@ -100,106 +100,29 @@ API.interceptors.response.use(
 );
 
 // API functions with better error handling
-export const loginUser = async (data) => {
-    try {
-        const response = await API.post('/auth/login', data);
-        return response;
-    } catch (error) {
-        throw error;
-    }
-};
+export const loginUser = (data) => API.post('/auth/login', data);
 
-export const registerUser = async (data) => {
-    try {
-        const response = await API.post('/auth/register', data);
-        return response;
-    } catch (error) {
-        throw error;
-    }
-};
+export const registerUser = (data) => API.post('/auth/register', data);
 
-export const markAttendance = async (data) => {
-    try {
-        const response = await API.post('/mark_attendance', data);
-        return response;
-    } catch (error) {
-        throw error;
-    }
-};
+export const markAttendance = (data) => API.post('/mark_attendance', data);
 
-export const registerStudentFace = async (data) => {
-    try {
-        const response = await API.post('/register', data);
-        return response;
-    } catch (error) {
-        throw error;
-    }
-};
+export const registerStudentFace = (data) => API.post('/register', data);
 
 export const registerStudent = registerStudentFace;
 
-export const getStats = async () => {
-    try {
-        const response = await API.get('/stats');
-        return response;
-    } catch (error) {
-        throw error;
-    }
-};
+export const getStats = () => API.get('/stats');
 
-export const getLogs = async () => {
-    try {
-        const response = await API.get('/attendance_log');
-        return response;
-    } catch (error) {
-        throw error;
-    }
-};
+export const getLogs = () => API.get('/attendance_log');
 
-export const getHODDashboard = async () => {
-    try {
-        const response = await API.get('/dashboard/hod');
-        return response;
-    } catch (error) {
-        throw error;
-    }
-};
+export const getHODDashboard = () => API.get('/dashboard/hod');
 
-export const getStudentDashboard = async () => {
-    try {
-        const response = await API.get('/dashboard/student');
-        return response;
-    } catch (error) {
-        throw error;
-    }
-};
+export const getStudentDashboard = () => API.get('/dashboard/student');
 
-export const getStudentsList = async () => {
-    try {
-        const response = await API.get('/students');
-        return response;
-    } catch (error) {
-        throw error;
-    }
-};
+export const getStudentsList = () => API.get('/students');
 
-export const applyLeave = async (data) => {
-    try {
-        const response = await API.post('/leave/apply', data);
-        return response;
-    } catch (error) {
-        throw error;
-    }
-};
+export const applyLeave = (data) => API.post('/leave/apply', data);
 
-export const getMyLeaves = async () => {
-    try {
-        const response = await API.get('/leave/my');
-        return response;
-    } catch (error) {
-        throw error;
-    }
-};
+export const getMyLeaves = () => API.get('/leave/my');
 
 // Utility functions
 export const getApiUrl = () => API_URL;

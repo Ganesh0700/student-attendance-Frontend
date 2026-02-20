@@ -12,14 +12,14 @@ const LazyLoader = () => (
 );
 
 // Lazy load components
-export const LazyRegister = lazy(() => import('../pages/Register').then(module => ({ default: module.Register })));
-export const LazyLogin = lazy(() => import('../pages/Login').then(module => ({ default: module.Login })));
-export const LazyDashboard = lazy(() => import('../pages/Dashboard').then(module => ({ default: module.Dashboard })));
-export const LazyStudentDashboard = lazy(() => import('../pages/StudentDashboard').then(module => ({ default: module.StudentDashboard })));
-export const LazyHODDashboard = lazy(() => import('../pages/HODDashboard').then(module => ({ default: module.HODDashboard })));
-export const LazyLeave = lazy(() => import('../pages/Leave').then(module => ({ default: module.Leave })));
-export const LazyLeaveRequests = lazy(() => import('../pages/LeaveRequests').then(module => ({ default: module.LeaveRequests })));
-export const LazyStudents = lazy(() => import('../pages/Students').then(module => ({ default: module.Students })));
+export const LazyRegister = lazy(() => import('../pages/Register'));
+export const LazyLogin = lazy(() => import('../pages/Login'));
+export const LazyDashboard = lazy(() => import('../pages/Dashboard'));
+export const LazyStudentDashboard = lazy(() => import('../pages/StudentDashboard'));
+export const LazyHODDashboard = lazy(() => import('../pages/HODDashboard'));
+export const LazyLeave = lazy(() => import('../pages/Leave'));
+export const LazyLeaveRequests = lazy(() => import('../pages/LeaveRequests'));
+export const LazyStudents = lazy(() => import('../pages/Students'));
 
 // Wrapper component for lazy loading with fallback
 export const LazyWrapper = ({ children }) => (

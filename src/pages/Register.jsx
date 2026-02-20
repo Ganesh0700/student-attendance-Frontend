@@ -39,7 +39,7 @@ const Register = () => {
         // Roll number validation
         if (!formData.rollNo.trim()) {
             newErrors.rollNo = "Roll number is required";
-        } else if (!/^[A-Za-z0-9\/-]+$/.test(formData.rollNo)) {
+        } else if (!/^[A-Za-z0-9/-]+$/.test(formData.rollNo)) {
             newErrors.rollNo = "Invalid roll number format";
         }
         
