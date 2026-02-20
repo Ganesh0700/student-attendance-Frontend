@@ -14,25 +14,29 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          charts: ['recharts'],
-          camera: ['react-webcam'],
-          utils: ['axios', 'jwt-decode', 'lucide-react']
-        }
-      }
-    },
     chunkSizeWarningLimit: 1000,
     assetsInlineLimit: 4096,
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
+              return 'vendor';
+            }
+            if (id.includes('recharts')) {
+              return 'charts';
+            }
+            if (id.includes('react-webcam')) {
+              return 'camera';
+            }
+            if (id.includes('axios') || id.includes('jwt-decode') || id.includes('lucide-react')) {
+              return 'utils';
+            }
+            return 'vendor';
+          }
+        }
+      }
+    }
   },
   resolve: {
     alias: {
