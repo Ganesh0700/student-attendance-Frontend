@@ -198,17 +198,18 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* Enhanced Camera Box */}
+            {/* Enhanced Camera Box - Mobile Optimized with Mirror */}
             <div className="aspect-video bg-black rounded-xl overflow-hidden relative shadow-2xl mb-4 sm:mb-6">
               <Webcam 
                 ref={webcamRef} 
                 screenshotFormat="image/jpeg" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover scale-x-[-1] sm:scale-x-100"
                 videoConstraints={{
-                  width: 640,
-                  height: 480,
+                  width: window.innerWidth < 640 ? 320 : 640,
+                  height: window.innerWidth < 640 ? 240 : 480,
                   facingMode: "user"
                 }}
+                mirrored={true}
               />
 
               {/* Enhanced Scanning Line */}

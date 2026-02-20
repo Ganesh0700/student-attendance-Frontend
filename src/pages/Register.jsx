@@ -216,77 +216,89 @@ const Register = () => {
                                 </p>
                             </div>
 
-                            {/* Camera/Image Display */}
-                            <div className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-lg max-w-md mx-auto">
+                            {/* Camera/Image Display - Mobile Optimized */}
+                            <div className="relative w-full max-w-sm sm:max-w-md mx-auto aspect-video bg-black rounded-xl overflow-hidden shadow-lg">
                                 {image ? (
                                     <img 
                                         src={image} 
                                         alt="Captured" 
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-full object-cover scale-x-[-1] sm:scale-x-100"
                                     />
                                 ) : (
                                     <div className="relative">
                                         <Webcam
                                             ref={webcamRef}
                                             screenshotFormat="image/jpeg"
-                                            className="w-full h-full object-cover"
+                                            className="w-full h-full object-cover scale-x-[-1] sm:scale-x-100"
                                             videoConstraints={{
-                                                width: 640,
-                                                height: 480,
+                                                width: window.innerWidth < 640 ? 320 : 640,
+                                                height: window.innerWidth < 640 ? 240 : 480,
                                                 facingMode: "user"
                                             }}
+                                            mirrored={true}
                                         />
                                         {cameraLoading && (
-                                            <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                                                <Loader2 size={32} className="text-white animate-spin" />
+                                            <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
+                                                <Loader2 size={24} sm:size={32} className="text-white animate-spin" />
+                                                <p className="text-white text-xs sm:text-sm mt-2">Initializing Camera...</p>
                                             </div>
                                         )}
                                     </div>
                                 )}
                                 
-                                {/* Camera status indicator */}
-                                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold ${
+                                {/* Enhanced Camera status indicator - Mobile Friendly */}
+                                <div className={`absolute top-2 sm:top-4 right-2 sm:right-4 px-2 py-1 rounded-full text-xs font-semibold transition-all ${
                                     image 
-                                        ? 'bg-green-500 text-white' 
-                                        : 'bg-red-500 text-white animate-pulse'
+                                        ? 'bg-green-500 text-white shadow-lg' 
+                                        : 'bg-red-500 text-white animate-pulse shadow-lg'
                                 }`}>
-                                    {image ? 'Captured' : 'Live'}
+                                    <div className="flex items-center gap-1">
+                                        <div className={`w-2 h-2 rounded-full ${image ? 'bg-white' : 'bg-white animate-pulse'}`} />
+                                        <span className="hidden sm:inline">{image ? '✓ Captured' : '● Live'}</span>
+                                        <span className="sm:hidden">{image ? '✓' : '●'}</span>
+                                    </div>
                                 </div>
-                            </div>
 
-                            {/* Camera Controls */}
-                            <div className="space-y-3 max-w-md mx-auto">
-                                {!image ? (
-                                    <button
-                                        type="button"
-                                        onClick={capture}
-                                        disabled={cameraLoading}
-                                        className="w-full py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all flex items-center justify-center gap-3 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
-                                    >
-                                        {cameraLoading ? (
-                                            <>
-                                                <Loader2 size={20} className="animate-spin" />
-                                                Initializing Camera...
-                                            </>
-                                        ) : (
-                                            <>
-                                                <Camera size={20} />
-                                                Capture Photo
-                                            </>
-                                        )}
-                                    </button>
-                                ) : (
-                                    <button
-                                        type="button"
-                                        onClick={retake}
-                                        disabled={loading}
-                                        className="w-full py-4 bg-white border-2 border-slate-300 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 transition-all flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
-                                    >
-                                        <Camera size={20} />
-                                        Retake Photo
-                                    </button>
-                                )}
-                            </div>
+                                {/* Camera Controls - Mobile Optimized */}
+                                <div className="space-y-3 px-2 sm:px-0">
+                                    {!image ? (
+                                        <button
+                                            type="button"
+                                            onClick={capture}
+                                            disabled={cameraLoading}
+                                            className="w-full py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all flex items-center justify-center gap-2 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+                                        >
+                                            {cameraLoading ? (
+                                                <>
+                                                    <Loader2 size={16} sm:size={20} className="animate-spin" />
+                                                    <span className="text-sm sm:text-base">Capturing...</span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <Camera size={16} sm:size={20} />
+                                                    <span className="text-sm sm:text-base">📸 Capture Photo</span>
+                                                </>
+                                            )}
+                                        </button>
+                                    ) : (
+                                        <div className="space-y-3">
+                                            {/* Preview with retake option */}
+                                            <div className="bg-green-50 border border-green-200 rounded-xl p-3">
+                                                <p className="text-green-700 text-sm font-semibold text-center">✅ Photo Captured Successfully!</p>
+                                            </div>
+                                            
+                                            <button
+                                                type="button"
+                                                onClick={retake}
+                                                disabled={loading}
+                                                className="w-full py-3 sm:py-4 bg-white border-2 border-red-300 text-red-600 font-semibold rounded-xl hover:bg-red-50 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+                                            >
+                                                <Camera size={16} sm:size={20} />
+                                                <span className="text-sm sm:text-base">🔄 Retake Photo</span>
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
 
                             {/* Photo Guidelines */}
                             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-md mx-auto">
@@ -551,14 +563,35 @@ const Register = () => {
                                     }`}
                                 >
                                     {loading ? (
-                                        <>
-                                            <Loader2 size={20} className="animate-spin" />
-                                            Processing...
-                                        </>
+                                        <style jsx>{`
+                                            @keyframes fade-in {
+                                                from { opacity: 0; transform: translateY(-10px); }
+                                                to { opacity: 1; transform: translateY(0); }
+                                            }
+                                            .animate-fade-in {
+                                                animation: fade-in 0.3s ease-out;
+                                            }
+                                            .custom-scrollbar::-webkit-scrollbar {
+                                                width: 4px;
+                                            }
+                                            .custom-scrollbar::-webkit-scrollbar-track {
+                                                background: #f1f5f9;
+                                                border-radius: 2px;
+                                            }
+                                            .custom-scrollbar::-webkit-scrollbar-thumb {
+                                                background: #cbd5e1;
+                                                border-radius: 2px;
+                                            }
+                                            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                                                background: #94a3b8;
+                                            }
+                                        `}</style>
+                                        <Loader2 size={16} sm:size={20} className="animate-spin" />
+                                        <span className="text-sm sm:text-base">Capturing...</span>
                                     ) : (
                                         <>
-                                            <UserPlus size={20} />
-                                            Register Now
+                                            <UserPlus size={16} sm:size={20} />
+                                            <span className="text-sm sm:text-base">📸 Capture Photo</span>
                                         </>
                                     )}
                                 </button>
