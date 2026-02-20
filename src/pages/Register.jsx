@@ -299,6 +299,7 @@ const Register = () => {
                                         </div>
                                     )}
                                 </div>
+                            </div>
 
                             {/* Photo Guidelines */}
                             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 max-w-md mx-auto">
@@ -563,35 +564,14 @@ const Register = () => {
                                     }`}
                                 >
                                     {loading ? (
-                                        <style jsx>{`
-                                            @keyframes fade-in {
-                                                from { opacity: 0; transform: translateY(-10px); }
-                                                to { opacity: 1; transform: translateY(0); }
-                                            }
-                                            .animate-fade-in {
-                                                animation: fade-in 0.3s ease-out;
-                                            }
-                                            .custom-scrollbar::-webkit-scrollbar {
-                                                width: 4px;
-                                            }
-                                            .custom-scrollbar::-webkit-scrollbar-track {
-                                                background: #f1f5f9;
-                                                border-radius: 2px;
-                                            }
-                                            .custom-scrollbar::-webkit-scrollbar-thumb {
-                                                background: #cbd5e1;
-                                                border-radius: 2px;
-                                            }
-                                            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                                                background: #94a3b8;
-                                            }
-                                        `}</style>
-                                        <Loader2 size={16} sm:size={20} className="animate-spin" />
-                                        <span className="text-sm sm:text-base">Capturing...</span>
+                                        <>
+                                            <Loader2 size={16} sm:size={20} className="animate-spin" />
+                                            <span className="text-sm sm:text-base">Registering...</span>
+                                        </>
                                     ) : (
                                         <>
                                             <UserPlus size={16} sm:size={20} />
-                                            <span className="text-sm sm:text-base">📸 Capture Photo</span>
+                                            <span className="text-sm sm:text-base">Register Now</span>
                                         </>
                                     )}
                                 </button>
