@@ -15,9 +15,18 @@ import {
     Users,
     AlertCircle,
     GraduationCap,
-    RefreshCw
+    RefreshCw,
+    Building
 } from 'lucide-react';
 import Sidebar from '../components/Sidebar';
+
+// College Information
+const collegeInfo = {
+    name: "Trinity Academy of Engineering (TAE)",
+    shortName: "TAE",
+    location: "Pune, India",
+    department: "Master of Computer Applications (MCA)"
+};
 
 const formatDateLabel = (dateStr) => {
     const parsed = new Date(`${dateStr}T00:00:00`);
@@ -137,8 +146,12 @@ const HODDashboard = () => {
             <div className="ml-64 flex-1 p-8">
                 <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
                     <div>
-                        <h1 className="text-2xl font-bold text-slate-800">HOD Dashboard</h1>
-                        <p className="text-slate-500">Attendance intelligence and risk tracking</p>
+                        <div className="flex items-center gap-3 mb-2">
+                            <Building className="text-blue-600" size={24} />
+                            <h1 className="text-2xl font-bold text-slate-800">HOD Dashboard</h1>
+                        </div>
+                        <p className="text-slate-500">{collegeInfo.name} - {collegeInfo.department}</p>
+                        <p className="text-slate-400 text-sm">Attendance intelligence and risk tracking</p>
                     </div>
                     <div className="flex gap-3">
                         <button

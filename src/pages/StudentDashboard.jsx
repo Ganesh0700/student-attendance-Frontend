@@ -3,9 +3,17 @@ import { getStudentDashboard } from '../api';
 import Sidebar from '../components/Sidebar';
 import { AuthContext } from '../context/auth-context';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
-import { Calendar, CheckCircle2, XCircle, Clock3, Flame, RefreshCw } from 'lucide-react';
+import { Calendar, CheckCircle2, XCircle, Clock3, Flame, RefreshCw, Building } from 'lucide-react';
 
 const COLORS = ['#16a34a', '#ef4444'];
+
+// College Information
+const collegeInfo = {
+    name: "Trinity Academy of Engineering (TAE)",
+    shortName: "TAE",
+    location: "Pune, India",
+    department: "Master of Computer Applications (MCA)"
+};
 
 const parseDateLabel = (dateStr) => {
     const parsed = new Date(`${dateStr}T00:00:00`);
@@ -85,10 +93,16 @@ const StudentDashboard = () => {
             <Sidebar />
             <div className="ml-64 flex-1 p-8">
                 <header className="mb-8">
-                    <h1 className="text-2xl font-bold text-slate-800">
-                        Hello, {data?.student_details?.name || user?.name || 'Student'}
-                    </h1>
+                    <div className="flex items-center gap-3 mb-2">
+                        <Building className="text-blue-600" size={24} />
+                        <h1 className="text-2xl font-bold text-slate-800">
+                            Hello, {data?.student_details?.name || user?.name || 'Student'}
+                        </h1>
+                    </div>
                     <p className="text-slate-500">
+                        {collegeInfo.name} - {collegeInfo.department}
+                    </p>
+                    <p className="text-slate-400 text-sm">
                         {data?.student_details?.dept || 'N/A'} | {data?.student_details?.email || user?.email || 'N/A'}
                     </p>
                 </header>

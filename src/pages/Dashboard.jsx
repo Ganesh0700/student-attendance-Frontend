@@ -15,9 +15,9 @@ const Dashboard = () => {
 
   // College information
   const collegeInfo = {
-    name: "Vivekananda Institute of Professional Studies",
-    shortName: "VIPS",
-    address: "Delhi, India",
+    name: "Trinity Academy of Engineering (TAE)",
+    shortName: "TAE",
+    address: "Pune, India",
     established: "2000"
   };
 
@@ -155,7 +155,7 @@ const Dashboard = () => {
               <div>
                 <h2 className="text-lg sm:text-xl font-bold">{collegeInfo.name}</h2>
                 <p className="text-xs sm:text-sm opacity-90">
-                  Department of Computer Applications
+                  Master of Computer Applications (MCA)
                 </p>
               </div>
             </div>

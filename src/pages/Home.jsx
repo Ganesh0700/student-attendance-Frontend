@@ -18,6 +18,16 @@ import {
 } from 'lucide-react';
 
 const Home = () => {
+  // College Information
+  const collegeInfo = {
+    name: "Trinity Academy of Engineering (TAE)",
+    shortName: "TAE",
+    parentInstitute: "KJ's Educational Institutes (KJEI)",
+    location: "Sr. No. 25 & 27, Kondhwa-Saswad Road, Bopdev Ghat, Pune – 411048",
+    department: "Master of Computer Applications (MCA)",
+    developer: "Rutuja Chakor (MCA-2nd Year)"
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 text-slate-900">
       {/* Enhanced Header */}
@@ -63,12 +73,12 @@ const Home = () => {
           </div>
           
           <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight text-slate-900 mb-6">
-            Vivekananda Institute of
-            <span className="block text-blue-600">Professional Studies</span>
+            {collegeInfo.name}
+            <span className="block text-blue-600">Pune</span>
           </h2>
           
           <p className="text-lg sm:text-xl text-slate-600 max-w-4xl mx-auto mb-8">
-            Advanced attendance system for <span className="font-semibold text-blue-600">Master of Computer Applications (MCA)</span>. 
+            Advanced attendance system for <span className="font-semibold text-blue-600">{collegeInfo.department}</span>. 
             Experience seamless face recognition, real-time tracking, and comprehensive analytics.
           </p>
 
@@ -156,21 +166,28 @@ const Home = () => {
                   <Building2 className="text-blue-600 mt-1" size={20} />
                   <div>
                     <h5 className="font-semibold text-slate-900">Institute Name</h5>
-                    <p className="text-slate-600">Vivekananda Institute of Professional Studies</p>
+                    <p className="text-slate-600">{collegeInfo.name}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <MapPin className="text-blue-600 mt-1" size={20} />
                   <div>
                     <h5 className="font-semibold text-slate-900">Campus Location</h5>
-                    <p className="text-slate-600">Delhi, India</p>
+                    <p className="text-slate-600">{collegeInfo.location}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <GraduationCap className="text-blue-600 mt-1" size={20} />
                   <div>
                     <h5 className="font-semibold text-slate-900">Department</h5>
-                    <p className="text-slate-600">Master of Computer Applications (MCA)</p>
+                    <p className="text-slate-600">{collegeInfo.department}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Building2 className="text-blue-600 mt-1" size={20} />
+                  <div>
+                    <h5 className="font-semibold text-slate-900">Parent Institute</h5>
+                    <p className="text-slate-600">{collegeInfo.parentInstitute}</p>
                   </div>
                 </div>
               </div>
@@ -255,6 +272,27 @@ const Home = () => {
           </div>
         </section>
       </main>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 text-white py-8 mt-16">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
+          <div className="text-center">
+            <div className="mb-4">
+              <h5 className="text-lg font-bold text-blue-400 mb-2">{collegeInfo.name}</h5>
+              <p className="text-slate-400 text-sm">{collegeInfo.parentInstitute}</p>
+              <p className="text-slate-500 text-xs mt-1">{collegeInfo.location}</p>
+            </div>
+            <div className="border-t border-slate-800 pt-4">
+              <p className="text-slate-400 text-sm">
+                Developed by <span className="text-blue-400 font-semibold">{collegeInfo.developer}</span>
+              </p>
+              <p className="text-slate-500 text-xs mt-2">
+                © 2024 {collegeInfo.shortName}. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
